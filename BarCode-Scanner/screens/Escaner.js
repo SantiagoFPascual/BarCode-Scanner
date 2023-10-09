@@ -10,34 +10,6 @@ const EscanerScreen = () => {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
 
-    let host = "A-PHZ2-LUM-017";
-    let port = "5000";
-
-    const [valores, setValores] = useState([])
-
-    const obtenerDatos = () => {
-        console.log("obetenerdatos")
-        let data=3017620422003
-    axios
-        .get(`https://world.openfoodfacts.org/api/v0/product/${data}.json`)
-        .then((result) => {
-        const valores = result.data
-        setValores(valores)
-
-        /*valores.map((Valor) => {
-            const { idProducto, barCode, nombre, proteinas, carbohidratos, grasas, grasasSaturadas, calorias} = Valor
-            
-        })*/
-        })
-        .catch((error) => {
-        console.log(error)
-        })
-    }
-    
-    useEffect(() => {
-        obtenerDatos();
-    }, []);
-
     useEffect(() => {
         const getBarCodeScannerPermissions = async () => {
             console.log("useeffect")
