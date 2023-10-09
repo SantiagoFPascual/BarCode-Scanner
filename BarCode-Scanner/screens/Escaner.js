@@ -10,26 +10,28 @@ const EscanerScreen = () => {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
 
-    let host = "A-PHZ2-CIDI-011";
+    let host = "A-PHZ2-LUM-017";
     let port = "5000";
 
     const [valores, setValores] = useState([])
 
-    const obtenerDatos = ({data}) => {
+    const obtenerDatos = () => {
+        console.log("obetenerdatos")
+        let data=3017620422003
     axios
-        .get(`http://${host}:${port}/api/productos/${data}`)
+        .get(`https://world.openfoodfacts.org/api/v0/product/${data}.json`)
         .then((result) => {
         const valores = result.data
+        setValores(valores)
 
-        valores.map((Valor) => {
+        /*valores.map((Valor) => {
             const { idProducto, barCode, nombre, proteinas, carbohidratos, grasas, grasasSaturadas, calorias} = Valor
-
-            setValores(valores)
-        })
+            
+        })*/
         })
         .catch((error) => {
         console.log(error)
-        }) 
+        })
     }
     
     useEffect(() => {
@@ -38,6 +40,7 @@ const EscanerScreen = () => {
 
     useEffect(() => {
         const getBarCodeScannerPermissions = async () => {
+            console.log("useeffect")
         const { status } = await BarCodeScanner.requestPermissionsAsync();
         setHasPermission(status === 'granted');
     };
@@ -45,7 +48,8 @@ const EscanerScreen = () => {
     getBarCodeScannerPermissions();
     }, []);
 
-    const handleBarCodeScanned = ({ type, data }) => {
+    const handleBarCodeScanned = ({data}) => {
+        console.log("handlebar")
         setScanned(true);
         alert(`Codigo del codigo de barra: ${data}`);
     };

@@ -3,9 +3,8 @@ import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import Screen1 from './src/screens/Screen1';
 
-import EscanerScreen from './screens/Escaner';
+import Escaner from './screens/Escaner';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,11 +19,9 @@ export default function App() {
         }}>        
         <Stack.Screen
           name="Escaner"
-          component={EscanerScreen}
+          component={Escaner}
           options={{title: 'Escaner'}}
         />
-        <Stack.Screen name="Escaner" component={EscanerScreen} />
-        <Stack.Screen name="Screen1" component={Screen1} />
       </Stack.Navigator>
     </NavigationContainer>
   );
